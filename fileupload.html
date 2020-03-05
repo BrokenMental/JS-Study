@@ -1,7 +1,36 @@
 <!DOCTYPE html>
-<html>
+<div style="background-color: white;">
     <form id="test">
         <input type="file" multiple id="fupload">
-        <input type="button" value="업로드">
     </form>
-</html>
+    <input type="button" value="업로드" id="btnup">
+</div>
+<script>
+    let frm = document.getElementById('test');
+    let btnup = document.getElementById('btnup');
+    let fup = document.getElementById('fupload');
+
+    btnup.onclick = function(){
+        for(let i=0; i< fup.files.length; i++){
+            console.log(fup.files[i].name);
+        }
+        
+        // console.log(fup.value[0]); // 0 : 풀 네임, 1: 풀네임 첫번째 글자, 2: 풀네임 두번째 글자 , ...
+
+        // let data = new FormData(frm);
+        // console.log(data);
+
+    }
+
+    // frm.addEventListener('change', function(e){
+    //     let input = e.target;
+    //     console.log(input);
+    //     console.log(frm);
+    //     debugger;
+
+    //     for (let i = 0; i < input.files.length; i++){
+    //         console.log(input.files[i].name);
+    //     }
+    // });
+    
+</script>
