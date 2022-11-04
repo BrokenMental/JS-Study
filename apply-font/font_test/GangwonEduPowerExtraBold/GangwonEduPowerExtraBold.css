@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'GangwonEduPowerExtraBold';
+  src: url('GangwonEduPowerExtraBold.svg#GangwonEduPowerExtraBold') format('svg'),
+       url('GangwonEduPowerExtraBold.ttf') format('truetype'),
+       url('GangwonEduPowerExtraBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+

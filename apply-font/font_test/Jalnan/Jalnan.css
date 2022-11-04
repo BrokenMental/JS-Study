@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Jalnan';
+  src: url('Jalnan.eot');
+  src: url('Jalnan.eot?#iefix') format('embedded-opentype'),
+       url('Jalnan.svg#Jalnan') format('svg'),
+       url('Jalnan.ttf') format('truetype'),
+       url('Jalnan.woff') format('woff'),
+       url('Jalnan.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
