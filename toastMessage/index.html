@@ -1,0 +1,24 @@
+<html>
+<head>
+    <link href="fontawesome-free-6.3.0-web/css/all.min.css" rel="stylesheet">
+    <link href="fontawesome-free-6.3.0-web/css/solid.min.css" rel="stylesheet">
+    <link href="toast-message.css" rel="stylesheet">
+</head>
+<body>
+    <input type="button" value="success" onclick="show_toast(this.value, 'SUCCESS');">
+    <input type="button" value="fail" onclick="show_toast(this.value, 'FAIL');">
+    <input type="button" value="abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz" onclick="show_toast(this.value, 'BAD');">
+    <input type="button" value="default" onclick="show_toast(this.value);">
+    
+    <div id="toast-message-object">
+        <div id="toast-message-object-img">
+            <i id="toast-message-object-img-icon"></i>
+        </div>
+        <div id="toast-message-object-value">A Notification Message</div>
+    </div>
+    
+    <script src="fontawesome-free-6.3.0-web/js/all.min.js"></script>
+    <script src="fontawesome-free-6.3.0-web/js/solid.min.js"></script>
+    <script src="toast-message.js"></script>
+</body>
+</html>
