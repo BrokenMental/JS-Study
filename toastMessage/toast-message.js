@@ -17,12 +17,16 @@ const toastViewStatusFlg = {
         color: "blue",
     },
     BAD: {
-        value: "fa-solid fa-tumbs-down",
+        value: "fa-solid fa-thumbs-down",
         color: "orange",
     },
     DEFAULT: {
-        value: "fa-solid fa-question",
+        value: "fa-solid fa-circle-question",
         color: "black",
+    },
+    OOPS: {
+        value: "fa-solid fa-circle-exclamation",
+        color: "purple",
     },
 };
 
@@ -69,3 +73,29 @@ const show_toast = (setMessageValue, setToastFlg) => {
         toastMessageObjectImgIcon.style.color = 'black';
     }, 3000);
 }
+
+//toast message div 초기 생성
+const makeObjectDivToastMessage = () => {
+    if(document.getElementById('toast-message-object')) {
+        return;
+    }
+
+    const toastMessageDiv = document.createElement('div');
+    const toastMessageDivImg = document.createElement('div');
+    const toastMessageDivImgIcon = document.createElement('i');
+    const toastMessageDivValue = document.createElement('div');
+
+    toastMessageDiv.id = 'toast-message-object';
+    toastMessageDivImg.id = 'toast-message-object-img';
+    toastMessageDivImgIcon.id = 'toast-message-object-img-icon';
+    toastMessageDivValue.id = 'toast-message-object-value';
+    toastMessageDivValue.innerText = 'A Notification Message';
+
+
+    toastMessageDivImg.appendChild(toastMessageDivImgIcon);
+    toastMessageDiv.appendChild(toastMessageDivImg);
+    toastMessageDiv.appendChild(toastMessageDivValue);
+    document.body.appendChild(toastMessageDiv);
+}
+
+makeObjectDivToastMessage();
