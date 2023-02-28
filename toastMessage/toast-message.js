@@ -1,9 +1,3 @@
-//시간으로 만든 uuid
-const nowTimeUUID = () => {
-	let date_value = new Date();
-	return date_value.getHours()+''+date_value.getMinutes()+''+date_value.getSeconds()+''+date_value.getMilliseconds()+'';
-}
-
 //toast 출력 상황
 const toastViewStatusFlg = {
     SUCCESS: {
@@ -39,9 +33,9 @@ const toastViewStatusFlg = {
 let showToastSetTimeoutObject = null;
 
 /*
- * 3초간 상단에 toast 띄우기(전체 4.5초, fade in / out 2초, css와 시간 맞춰야 함)
- * @dom Object id(className)
- * - toast-message-object(toast-message-objects) : 최상위(level1) div tag
+ * 3초간 상단에 toast 띄우기(전체 4.5초, fade in / out 2초)
+ * @dom Object id
+ * - toast-message-object : 최상위(level1) div tag
  * - toast-message-object-img : level2 div tag
  * - toast-message-object-img-icon : img div 하위 level3 i tag
  * (i tag icon : fontawesome icon)
@@ -90,11 +84,7 @@ const show_toast = (setMessageValue, setToastFlg) => {
 
 const makeObjectDivToastMessageArray = [];
 
-/*
- * toast message div 초기 생성
- * 최상위 Div에는 className 부여, 해당 className은 array에 push.
- * 현재 toast 메시지가 떠있는 상황에서 신규 toast가 출력되어야 할 경우 기존 toast를 제거 후 신규 toast 띄움
-*/
+//toast message div 초기 생성
 const makeObjectDivToastMessage = () => {
     const uuid = nowTimeUUID();
 

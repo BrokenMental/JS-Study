@@ -29,9 +29,11 @@
 
 .toast-message-objects #toast-message-object-value {
     padding-top: 9px;
-    max-width: 460px;
+    max-width: 600px;
     height: 70px;
     color: black;
+
+    text-align: left;
 
     overflow: hidden;
     white-space: nowrap;
@@ -63,29 +65,29 @@
 
 @-webkit-keyframes expand {
     from {min-width: 70px}
-    to {min-width: 460px}
+    to {min-width: 600px}
 }
 
 @keyframes expand {
     from {min-width: 70px}
-    to {min-width: 460px}
+    to {min-width: 600px}
 }
 @-webkit-keyframes stay {
-    from {min-width: 460px}
-    to {min-width: 460px}
+    from {min-width: 600px}
+    to {min-width: 600px}
 }
 
 @keyframes stay {
-    from {min-width: 460px}
-    to {min-width: 460px}
+    from {min-width: 600px}
+    to {min-width: 600px}
 }
 @-webkit-keyframes shrink {
-    from {min-width: 460px;}
+    from {min-width: 600px;}
     to {min-width: 70px;}
 }
 
 @keyframes shrink {
-    from {min-width: 460px;}
+    from {min-width: 600px;}
     to {min-width: 70px;}
 }
 
@@ -113,7 +115,7 @@
 
     .toast-message-objects #toast-message-object-value {
         padding-top: 10px;
-        max-width: 280px;
+        max-width: 340px;
         height: 50px;
     }
 
@@ -133,29 +135,29 @@
 
     @-webkit-keyframes mobile-expand {
         from {min-width: 50px}
-        to {min-width: 280px}
+        to {min-width: 340px}
     }
 
     @keyframes mobile-expand {
         from {min-width: 50px}
-        to {min-width: 280px}
+        to {min-width: 340px}
     }
     @-webkit-keyframes mobile-stay {
-        from {min-width: 280px}
-        to {min-width: 280px}
+        from {min-width: 340px}
+        to {min-width: 340px}
     }
 
     @keyframes mobile-stay {
-        from {min-width: 280px}
-        to {min-width: 280px}
+        from {min-width: 340px}
+        to {min-width: 340px}
     }
     @-webkit-keyframes mobile-shrink {
-        from {min-width: 280px;}
+        from {min-width: 340px;}
         to {min-width: 50px;}
     }
 
     @keyframes mobile-shrink {
-        from {min-width: 280px;}
+        from {min-width: 340px;}
         to {min-width: 50px;}
     }
 }
