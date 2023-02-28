@@ -1,13 +1,14 @@
 /* 참조 : https://codepen.io/jrsmiffy/pen/eYYwrap */
 
-#toast-message-object {
+.toast-message-objects {
     visibility: hidden;
-    max-width: 50px;
-    height: 50px;
+    max-width: 70px;
+    height: 70px;
     margin: auto;
     text-align: center;
     border: 1px solid black;
     border-radius: 25px;
+    background: white;
 
     position: fixed;
     left: 0;
@@ -15,85 +16,146 @@
     top: 30px;
     white-space: nowrap;
 
-    font-size: x-large;
+    font-size: xx-large;
 }
 
-#toast-message-object #toast-message-object-img {
-    padding: 13px 0;
-    width: 50px;
+.toast-message-objects #toast-message-object-img {
+    padding: 9px 0;
+    width: 70px;
     float: left;
 
     box-sizing: border-box;
 }
 
-#toast-message-object #toast-message-object-value {
-    padding-top: 7px;
-    max-width: 280px;
-    height: 50px;
+.toast-message-objects #toast-message-object-value {
+    padding-top: 9px;
+    max-width: 460px;
+    height: 70px;
     color: black;
 
     overflow: hidden;
     white-space: nowrap;
 }
 
-#toast-message-object.show {
+.toast-message-objects.show {
     visibility: visible;
     animation: fadein 0.5s,
                expand 0.5s 0.5s,
-               stay 2.5s 1s,
-               shrink 0.5s 2s forwards,
-               fadeout 0.5s 2.5s;
-    -webkit-animation: fadein 0.5s, 
+               stay 3s 1s,
+               shrink 0.5s 3.5s,
+               fadeout 0.5s 4s;
+    -webkit-animation: fadein 0.5s,
                        expand 0.5s 0.5s,
-                       stay 2.5s 1s,
-                       shrink 0.5s 2s forwards,
-                       fadeout 0.5s 2.5s;
+                       stay 3s 1s,
+                       shrink 0.5s 3.5s,
+                       fadeout 0.5s 4s;
 }
 
 @-webkit-keyframes fadein {
-    from {top: 60px; opacity: 0;} 
+    from {top: 10px; opacity: 0;}
     to {top: 30px; opacity: 1;}
 }
 
 @keyframes fadein {
-    from {top: 60px; opacity: 0;}
+    from {top: 10px; opacity: 0;}
     to {top: 30px; opacity: 1;}
 }
 
 @-webkit-keyframes expand {
-    from {min-width: 50px} 
-    to {min-width: 350px}
+    from {min-width: 70px}
+    to {min-width: 460px}
 }
 
 @keyframes expand {
-    from {min-width: 50px}
-    to {min-width: 350px}
+    from {min-width: 70px}
+    to {min-width: 460px}
 }
 @-webkit-keyframes stay {
-    from {min-width: 350px} 
-    to {min-width: 350px}
+    from {min-width: 460px}
+    to {min-width: 460px}
 }
 
 @keyframes stay {
-    from {min-width: 350px}
-    to {min-width: 350px}
+    from {min-width: 460px}
+    to {min-width: 460px}
 }
 @-webkit-keyframes shrink {
-    from {min-width: 350px;} 
-    to {min-width: 50px;}
+    from {min-width: 460px;}
+    to {min-width: 70px;}
 }
 
 @keyframes shrink {
-    from {min-width: 350px;} 
-    to {min-width: 50px;}
+    from {min-width: 460px;}
+    to {min-width: 70px;}
 }
 
 @-webkit-keyframes fadeout {
     from {top: 30px; opacity: 1;} 
-    to {top: 0; opacity: 0;}
+    to {top: 10px; opacity: 0;}
 }
 
 @keyframes fadeout {
     from {top: 30px; opacity: 1;}
-    to {top: 0; opacity: 0;}
+    to {top: 10px; opacity: 0;}
+}
+
+@media(max-width:768px) {
+    .toast-message-objects {
+        font-size: large;
+        max-width: 50px;
+        height: 50px;
+    }
+
+    .toast-message-objects #toast-message-object-img {
+        padding: 10px 0;
+        width: 50px;
+    }
+
+    .toast-message-objects #toast-message-object-value {
+        padding-top: 10px;
+        max-width: 280px;
+        height: 50px;
+    }
+
+    .toast-message-objects.show {
+        visibility: visible;
+        animation: fadein 0.5s,
+                   mobile-expand 0.5s 0.5s,
+                   mobile-stay 3s 1s,
+                   mobile-shrink 0.5s 3.5s,
+                   fadeout 0.5s 4s;
+        -webkit-animation: fadein 0.5s,
+                           mobile-expand 0.5s 0.5s,
+                           mobile-stay 3s 1s,
+                           mobile-shrink 0.5s 3.5s,
+                           fadeout 0.5s 4s;
+    }
+
+    @-webkit-keyframes mobile-expand {
+        from {min-width: 50px}
+        to {min-width: 280px}
+    }
+
+    @keyframes mobile-expand {
+        from {min-width: 50px}
+        to {min-width: 280px}
+    }
+    @-webkit-keyframes mobile-stay {
+        from {min-width: 280px}
+        to {min-width: 280px}
+    }
+
+    @keyframes mobile-stay {
+        from {min-width: 280px}
+        to {min-width: 280px}
+    }
+    @-webkit-keyframes mobile-shrink {
+        from {min-width: 280px;}
+        to {min-width: 50px;}
+    }
+
+    @keyframes mobile-shrink {
+        from {min-width: 280px;}
+        to {min-width: 50px;}
+    }
 }

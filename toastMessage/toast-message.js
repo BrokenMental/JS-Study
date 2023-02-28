@@ -1,3 +1,9 @@
+//시간으로 만든 uuid
+const nowTimeUUID = () => {
+	let date_value = new Date();
+	return date_value.getHours()+''+date_value.getMinutes()+''+date_value.getSeconds()+''+date_value.getMilliseconds()+'';
+}
+
 //toast 출력 상황
 const toastViewStatusFlg = {
     SUCCESS: {
@@ -30,10 +36,12 @@ const toastViewStatusFlg = {
     },
 };
 
+let showToastSetTimeoutObject = null;
+
 /*
- * 3초간 상단에 toast 띄우기
- * @dom Object id
- * - toast-message-object : 최상위(level1) div tag
+ * 3초간 상단에 toast 띄우기(전체 4.5초, fade in / out 2초, css와 시간 맞춰야 함)
+ * @dom Object id(className)
+ * - toast-message-object(toast-message-objects) : 최상위(level1) div tag
  * - toast-message-object-img : level2 div tag
  * - toast-message-object-img-icon : img div 하위 level3 i tag
  * (i tag icon : fontawesome icon)
@@ -45,13 +53,19 @@ const toastViewStatusFlg = {
  * 
 */
 const show_toast = (setMessageValue, setToastFlg) => {
-    const toastMessageObject = document.getElementById("toast-message-object");
+    makeObjectDivToastMessage();
+
+    const toastMessageObject = document.getElementById("toast-message-object-"+makeObjectDivToastMessageArray[makeObjectDivToastMessageArray.length-1]);
     const toastMessageObjectImgIcon = document.getElementById("toast-message-object-img-icon");
     const toastMessageObjectValue = document.getElementById("toast-message-object-value");
 
-    if(toastMessageObject.className === 'show') {
-        return;
-    }
+    makeObjectDivToastMessageArray.reverse().forEach(modtm => {
+        const prevToastMessageObject = document.getElementById("toast-message-object-"+modtm);
+
+        if(prevToastMessageObject.className === 'toast-message-objects show') {
+            prevToastMessageObject.className = 'toast-message-objects ';
+        }
+    });
 
     if(!setToastFlg) {
         setToastFlg = 'DEFAULT';  
@@ -62,35 +76,49 @@ const show_toast = (setMessageValue, setToastFlg) => {
     }
 
     toastMessageObjectImgIcon.className = toastViewStatusFlg[setToastFlg].value;
-    toastMessageObject.className = 'show';
+    toastMessageObject.className = 'toast-message-objects show';
     toastMessageObjectValue.innerText = setMessageValue;
     toastMessageObjectImgIcon.style.color = toastViewStatusFlg[setToastFlg].color;
 
-    setTimeout(() => {
+    showToastSetTimeoutObject = setTimeout(() => {
         toastMessageObjectImgIcon.className = '';
-        toastMessageObject.className = '';
-        toastMessageObjectValue.innerText = "A Notification Message";
+        toastMessageObject.className = 'toast-message-objects';
+        toastMessageObjectValue.innerText = 'A Notification Message';
         toastMessageObjectImgIcon.style.color = 'black';
-    }, 3000);
+    }, 4500);
 }
 
-//toast message div 초기 생성
+const makeObjectDivToastMessageArray = [];
+
+/*
+ * toast message div 초기 생성
+ * 최상위 Div에는 className 부여, 해당 className은 array에 push.
+ * 현재 toast 메시지가 떠있는 상황에서 신규 toast가 출력되어야 할 경우 기존 toast를 제거 후 신규 toast 띄움
+*/
 const makeObjectDivToastMessage = () => {
-    if(document.getElementById('toast-message-object')) {
-        return;
+    const uuid = nowTimeUUID();
+
+    if(makeObjectDivToastMessageArray.length > 0) {
+        makeObjectDivToastMessageArray.reverse().forEach(modtm => {
+            const prevToastMessageObject = document.getElementById('toast-message-object-'+modtm);
+            document.body.removeChild(prevToastMessageObject);
+            makeObjectDivToastMessageArray.pop();
+        });
     }
+
+    makeObjectDivToastMessageArray.push(uuid);
 
     const toastMessageDiv = document.createElement('div');
     const toastMessageDivImg = document.createElement('div');
     const toastMessageDivImgIcon = document.createElement('i');
     const toastMessageDivValue = document.createElement('div');
 
-    toastMessageDiv.id = 'toast-message-object';
+    toastMessageDiv.id = 'toast-message-object-'+uuid;
+    toastMessageDiv.className = 'toast-message-objects';
     toastMessageDivImg.id = 'toast-message-object-img';
     toastMessageDivImgIcon.id = 'toast-message-object-img-icon';
     toastMessageDivValue.id = 'toast-message-object-value';
     toastMessageDivValue.innerText = 'A Notification Message';
-
 
     toastMessageDivImg.appendChild(toastMessageDivImgIcon);
     toastMessageDiv.appendChild(toastMessageDivImg);
