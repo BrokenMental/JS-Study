@@ -9,11 +9,18 @@
         .highlight-select-date a {
             background: yellow !important;
         }
+
+        .highlight-select-date a.ui-state-active {
+            background: orange !important;
+        }
     </style>
 </head>
 <body>
 <!-- Datepicker -->
 <h2 class="demoHeaders">Datepicker</h2>
+<p>
+    <input type="text" id="select-pic-date-view">
+</p>
 <div id="datepicker"></div>
 <script src="../external/jquery/jquery.js"></script>
 <script src="../jquery-ui.js"></script>
@@ -27,25 +34,27 @@
     $( "#datepicker" ).datepicker({
         inline: true,
         dateFormat: 'yy-mm-dd',
-        beforeShowDay: function(date) {
-            let gM = date.getMonth() + 1;
+        beforeShowDay: function(showDate) {
+            let gM = showDate.getMonth() + 1;
             if(gM < 10) {
                 gM='0'+gM;
             }
 
-            let gD = date.getDate();
+            let gD = showDate.getDate();
             if(gD < 10) {
                 gD='0'+gD;
             }
 
-            const pickerDate = date.getFullYear() + '-' + gM + '-' + gD;
-
-            console.log(pickerDate);
+            const pickerDate = showDate.getFullYear() + '-' + gM + '-' + gD;
 
             if([...eventDates].indexOf(pickerDate) > -1) {
                 return [true, 'highlight-select-date'];
             }
             return [false, '', 'unAvailable'];
+        },
+        onSelect: function(selectDate) {
+            const selectPicDateView = document.getElementById('select-pic-date-view');
+            selectPicDateView.value = selectDate;
         }
     });
 </script>
