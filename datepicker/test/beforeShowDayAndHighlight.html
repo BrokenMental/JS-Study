@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="us">
+
+<head>
+    <meta charset="utf-8">
+    <title>beforeShowDay & highlight</title>
+    <link href="../jquery-ui.css" rel="stylesheet">
+    <style>
+        .highlight-select-date a {
+            background: yellow !important;
+        }
+    </style>
+</head>
+<body>
+<!-- Datepicker -->
+<h2 class="demoHeaders">Datepicker</h2>
+<div id="datepicker"></div>
+<script src="../external/jquery/jquery.js"></script>
+<script src="../jquery-ui.js"></script>
+<script>
+    let eventDates = [];
+    eventDates.push('2023-03-01');
+    eventDates.push('2023-03-02');
+    eventDates.push('2023-03-03');
+    eventDates.push('2023-03-04');
+
+    $( "#datepicker" ).datepicker({
+        inline: true,
+        dateFormat: 'yy-mm-dd',
+        beforeShowDay: function(date) {
+            let gM = date.getMonth() + 1;
+            if(gM < 10) {
+                gM='0'+gM;
+            }
+
+            let gD = date.getDate();
+            if(gD < 10) {
+                gD='0'+gD;
+            }
+
+            const pickerDate = date.getFullYear() + '-' + gM + '-' + gD;
+
+            console.log(pickerDate);
+
+            if([...eventDates].indexOf(pickerDate) > -1) {
+                return [true, 'highlight-select-date'];
+            }
+            return [false, '', 'unAvailable'];
+        }
+    });
+</script>
+</body>
+</html>
